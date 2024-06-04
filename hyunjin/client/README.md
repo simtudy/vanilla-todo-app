@@ -7,8 +7,8 @@
 
 ---
 
-- [] 풋터 퍼블
-  ![Footer](/client/public/readme/footer.png)
+- [x] 풋터 퍼블
+      ![Footer](/client/public/readme/footer.png)
 
 ---
 
