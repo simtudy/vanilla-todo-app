@@ -2,8 +2,8 @@
 
 #### [예시 사이트](https://todomvc.com/examples/javascript-es6/dist/#/)
 
-- [] 헤더 퍼블
-  ![Header](/client/public/readme/header.png)
+- [x] 헤더 퍼블
+      ![Header](/client/public/readme/header.png)
 
 ---
 
