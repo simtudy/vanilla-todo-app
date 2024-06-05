@@ -3,25 +3,25 @@
 #### [예시 사이트](https://todomvc.com/examples/javascript-es6/dist/#/)
 
 - [x] 헤더 퍼블
-      ![Header](/client/public/readme/header.png)
+      ![Header](/screenshots/header.png)
 
 ---
 
 - [x] 풋터 퍼블
-      ![Footer](/client/public/readme/footer.png)
+      ![Footer](/screenshots/footer.png)
 
 ---
 
 - [] 인풋 퍼블
 
   - [] placeholder는 "What needs to be done?"
-    ![Input](/client/public/readme/no_item.png)
+    ![Input](/screenshots/no_item.png)
   - [] todo list가 0보다 크면 좌측 전체 선택 화살표 visible (회색)
-    ![Input](/client/public/readme/have_item.png)
+    ![Input](/screenshots/have_item.png)
   - [] todo item이 모두 선택 되어 있으면 좌측 전체 선택 화살표 검색으로 변경
-    ![Input](/client/public/readme/checked_item.png)
+    ![Input](/screenshots/checked_item.png)
   - [] todo item이 일부만 선택 되어 있거나 아무것도 선택 되어 있지 않으면 전체 선택 화살표는 회색으로 변경
-    ![Input](/client/public/readme/once_checked_item.png)
+    ![Input](/screenshots/once_checked_item.png)
 
 ---
 
@@ -36,10 +36,10 @@
 - [] todo 리스트 퍼블
 
   - [] todo item 마우스 호버 시 오른 x 버튼 visible 처리
-    ![Input-Hover](/client/public/readme/hover_item.png)
+    ![Input-Hover](/screenshots/hover_item.png)
   - [] 리스트에 있는 todo item의 왼쪽 체크 박스 클릭 시 middle line 생기면서 비활성화
   - [] item 더블 클릭 시 input 활성화
-    ![Input-Double-Click](/client/public/readme/double_click_item.png)
+    ![Input-Double-Click](/screenshots/double_click_item.png)
 
 ---
 
@@ -52,7 +52,7 @@
 ---
 
 - [] todo 리스트 풋터 퍼블
-  ![Input-Double-Click](/client/public/readme/double_click_item.png)
+  ![Input-Double-Click](/screenshots/double_click_item.png)
   - [] 남은 todo 개수를 표현하는 `item left`
   - [] `All`, `Active`, `Completed` router 버튼
   - [] 체크된 아이템이 있을 때 `Clear completed` 버튼 visible
