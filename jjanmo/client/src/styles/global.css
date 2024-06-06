@@ -1,10 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --white: #ffffff;
+  --gray-light: #f5f5f5;
+  --gray: #b4b4b4;
+  --gray-dark: #949494;
+  --black: #000000;
+  --red: #b83f44;
+  --red-light: #cf7d7d;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--gray-light);
+}
+
+input {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
