@@ -1,1 +1,63 @@
+@import './reset.css';
 @import './global.css';
+
+#app {
+  width: 500px;
+  margin: auto;
+}
+
+.title {
+  margin: 50px 0;
+  font-size: 70px;
+  font-weight: 300;
+  text-align: center;
+  color: var(--red);
+}
+
+.todo-form {
+  position: relative;
+  display: flex;
+}
+.all-toggle-btn {
+  all: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-4px) rotate(180deg);
+  font-size: 32px;
+  color: var(--gray);
+  cursor: pointer;
+}
+.todo-input {
+  width: 100%;
+  height: 60px;
+  padding-left: 60px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  box-shadow:
+    0 2px 4px 0 rgba(0, 0, 0, 0.2),
+    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+
+  &::placeholder {
+    font-style: italic;
+    color: var(--gray-dark);
+  }
+  &:focus {
+    box-shadow: inset 0 0 2px 2px var(--red-light);
+  }
+}
+
+main {
+  background-color: var(--white);
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+}

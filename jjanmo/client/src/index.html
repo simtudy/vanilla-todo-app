@@ -5,6 +5,40 @@
     <title>Vanilla TodoApp</title>
   </head>
   <body>
-    <h1>Hello world!!!</h1>
+    <div id="app">
+      <header>
+        <h1 class="title">vanilla todos</h1>
+      </header>
+
+      <main>
+        <form class="todo-form">
+          <button class="all-toggle-btn" type="button">⌃</button>
+          <input
+            class="todo-input"
+            type="text"
+            placeholder="What needs to be done?"
+            autofocus
+          />
+        </form>
+
+        <!-- <ul class="list">
+          <li class="item">
+            <input type="checkbox" />
+            <label>할 일</label>
+            <button>삭제</button>
+          </li>
+        </ul>
+
+        <div class="action-container">
+          <div class="stats">3 items left</div>
+          <div>
+            <button class="all-btn">all</button>
+            <button class="active-btn">active</button>
+            <button class="completed-btn">completed</button>
+          </div>
+          <button class="clear-completed-btn">clear completed</button>
+        </div> -->
+      </main>
+    </div>
   </body>
 </html>
