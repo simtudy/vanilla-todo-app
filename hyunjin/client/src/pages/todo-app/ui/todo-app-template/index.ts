@@ -5,6 +5,8 @@ template.innerHTML = `
     <style>
         @import url('/src/pages/todo-app/ui/todo-app-template/styles.css');
     </style>
+    
+    <todo-header></todo-header>
 
     <section class="app">
         <todo-input></todo-input>
@@ -13,5 +15,7 @@ template.innerHTML = `
         </main>
         <todo-bottombar></todo-bottombar>
     </section>
+
+    <todo-footer></todo-footer>
     
 `;
