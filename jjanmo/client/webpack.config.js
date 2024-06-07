@@ -4,9 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isProduction = process.env.NODE_ENV == 'production'
 
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : 'style-loader'
+const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
 
 const config = {
   entry: './src/index.ts',
@@ -44,6 +42,9 @@ const config = {
     watchFiles: ['src/**/*'],
   },
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
     extensions: ['.ts', '.js'],
   },
 }

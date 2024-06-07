@@ -1,5 +1,5 @@
-import { state } from '../store'
-import { ToDo } from '../types'
+import state from '@/store'
+import { ToDo } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
 
 const $todoForm = document.querySelector('.todo-form') as HTMLFormElement
