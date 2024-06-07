@@ -5,17 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/simtudy.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HyunJin_TodoList</title>
-    <link rel="stylesheet" href="/src/app/styles/reset.css" />
-    <link rel="stylesheet" href="/src/app/styles/index.css" />
-    <script type="module" src="/src/app/index.ts"></script>
+    <link rel="stylesheet" href="src/app/styles/reset.css" />
+    <link rel="stylesheet" href="src/app/styles/global.css" />
+
     <script type="module" src="src/widgets/todo-header/index.ts"></script>
+    <script type="module" src="src/pages/todo-app/index.ts"></script>
     <script type="module" src="src/features/todo-input/index.ts"></script>
     <script type="module" src="src/widgets/todo-footer/index.ts"></script>
   </head>
-  <body>
-    <!-- <div id="app"></div> -->
 
+  <body>
     <todo-header></todo-header>
+    <todo-app></todo-app>
     <todo-footer></todo-footer>
   </body>
 </html>
