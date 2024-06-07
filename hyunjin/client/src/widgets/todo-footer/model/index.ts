@@ -1,1 +1,1 @@
-export { TodoFooterComponent } from "./footer-component";
+export { Component } from "./footer-component";

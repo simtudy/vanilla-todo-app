@@ -1,9 +1,9 @@
 import { TodoFooterTemplate } from "@widgets/todo-footer";
 
-export class TodoFooterComponent extends HTMLElement {
+export class Component extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = TodoFooterTemplate.innerHTML;
   }
 }
-customElements.define("todo-footer", TodoFooterComponent);
+customElements.define("todo-footer", Component);

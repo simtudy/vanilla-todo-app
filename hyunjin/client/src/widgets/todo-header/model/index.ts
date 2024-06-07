@@ -1,1 +1,1 @@
-export { TodoHeaderComponent } from "./header-component";
+export { Component } from "./header-component";
