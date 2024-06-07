@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="/src/app/styles/reset.css" />
     <link rel="stylesheet" href="/src/app/styles/index.css" />
     <script type="module" src="/src/app/index.ts"></script>
+    <script type="module" src="src/widgets/todo-header/index.ts"></script>
     <script type="module" src="src/widgets/todo-footer/index.ts"></script>
   </head>
   <body>
-    <header class="header">
-      <a href="#"><h1 class="title">todos</h1></a>
-    </header>
     <!-- <div id="app"></div> -->
 
+    <todo-header></todo-header>
     <todo-footer></todo-footer>
   </body>
 </html>
