@@ -1,6 +1,6 @@
-import { TodoInputTemplate } from "@features/todo-input";
+import { TodoInputTemplate } from "@widgets/todo-input";
 
-export class TodoInputComponent extends HTMLElement {
+export class Component extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -10,4 +10,4 @@ export class TodoInputComponent extends HTMLElement {
   connectedCallback() {}
 }
 
-customElements.define("todo-input", TodoInputComponent);
+customElements.define("todo-input", Component);

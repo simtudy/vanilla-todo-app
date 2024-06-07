@@ -5,7 +5,7 @@ template.innerHTML = `
     <link rel="stylesheet" href="src/app/styles/reset.css" />
     <link rel="stylesheet" href="src/app/styles/global.css" />
     <style>
-        @import url('src/features/todo-input/ui/todo-input-template/styles.css');
+        @import url('src/widgets/todo-input/ui/todo-input-template/styles.css');
     </style>
     
     <header class="topbar">
