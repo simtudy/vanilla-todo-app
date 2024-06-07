@@ -1,3 +1,3 @@
 import './styles/index.css'
-
-console.log('Hello World!!!!!')
+import './store'
+import './components/form'
