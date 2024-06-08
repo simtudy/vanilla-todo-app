@@ -6,7 +6,8 @@ const state: State = {
 }
 
 const dispatch = <T>({ type, payload }: Action<T>) => {
-  return reducer({ type, payload })
+  const updated = reducer({ type, payload })
+  Object.assign(state, updated)
 }
 
 const reducer = ({ type, payload }: Action<unknown>): State => {
