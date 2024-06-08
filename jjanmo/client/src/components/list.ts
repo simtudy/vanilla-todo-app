@@ -1,5 +1,6 @@
 import { dispatch, state } from '@/store'
 import { renderToggleAllBtn } from './form'
+import { renderClearCompletedBtn, renderControlContainer } from './control'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
@@ -33,13 +34,14 @@ const handleClick = (e: Event) => {
     dispatch({ type: 'DELETE_TODO', payload: { id } })
     renderList()
     renderToggleAllBtn()
+    renderControlContainer()
     return
   }
 
   if (className.includes('checkbox')) {
     dispatch({ type: 'TOGGLE_TODO_ITEM', payload: { id } })
     renderList()
-    renderToggleAllBtn()
+    renderClearCompletedBtn()
     return
   }
 }
