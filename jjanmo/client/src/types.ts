@@ -25,6 +25,7 @@ export type ActionTypes =
   | ToggleAllTodoItemsAction
   | ClearCompletedItemsAction
   | ChangeFilterAction
+  | ResetAllAction
 
 export type AddTodoAction = {
   type: 'ADD_TODO'
@@ -54,4 +55,7 @@ export type ChangToggleAllBtnVisibilityAction = {
 }
 export type ClearCompletedItemsAction = {
   type: 'CLEAR_COMPLETED_ITEMS'
+}
+export type ResetAllAction = {
+  type: 'RESET_ALL'
 }

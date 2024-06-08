@@ -34,7 +34,7 @@ const reducer = (action: ActionTypes): State => {
         todos: state.todos.filter((todo) => todo.id !== id),
       }
     }
-    case 'TOGGLE_TODO_ITEM':
+    case 'TOGGLE_TODO_ITEM': {
       const { id } = action.payload
       return {
         ...state,
@@ -42,29 +42,41 @@ const reducer = (action: ActionTypes): State => {
           todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo
         ),
       }
-    case 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY':
+    }
+    case 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY': {
       return {
         ...state,
         isAllCompleted: !state.isAllCompleted,
       }
-    case 'TOGGLE_ALL_TODO_ITEMS':
+    }
+    case 'TOGGLE_ALL_TODO_ITEMS': {
       return {
         ...state,
         todos: state.todos.map((todo) => ({ ...todo, status: state.isAllCompleted ? 'completed' : 'active' })),
       }
-    case 'CLEAR_COMPLETED_ITEMS':
+    }
+    case 'CLEAR_COMPLETED_ITEMS': {
       const activeTodos = state.todos.filter((todo) => todo.status === 'active')
       return {
         ...state,
         todos: activeTodos,
         isAllCompleted: activeTodos.length === 0 ? false : state.isAllCompleted,
       }
-    case 'CHANGE_FILTER':
+    }
+    case 'CHANGE_FILTER': {
       const { filter } = action.payload
       return {
         ...state,
         filter,
       }
+    }
+    case 'RESET_ALL': {
+      return {
+        todos: [],
+        isAllCompleted: false,
+        filter: 'all',
+      }
+    }
     default:
       return state
   }
