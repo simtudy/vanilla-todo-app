@@ -1,10 +1,10 @@
 import { dispatch, state } from '@/store'
-import { State, Todo } from '@/types'
+import { renderToogleBtn } from './form'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
 export const renderList = () => {
-  const { todos, isAllCompleted } = state
+  const { todos } = state
 
   const updated = todos.map((todo) => {
     const { id, text, status } = todo
@@ -32,12 +32,14 @@ const handleClick = (e: Event) => {
   if (className.includes('delete')) {
     dispatch({ type: 'DELETE_TODO', payload: { id } })
     renderList()
+    renderToogleBtn()
     return
   }
 
   if (className.includes('checkbox')) {
     dispatch({ type: 'TOGGLE_TODO', payload: { id } })
     renderList()
+    renderToogleBtn()
     return
   }
 }

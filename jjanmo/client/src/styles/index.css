@@ -39,6 +39,10 @@ main {
   font-size: 32px;
   color: var(--gray-light);
   cursor: pointer;
+
+  &.all-completed {
+    color: var(--gray-dark);
+  }
 }
 .todo-input {
   width: 100%;

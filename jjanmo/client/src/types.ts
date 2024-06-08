@@ -24,5 +24,5 @@ export type ActionType =
 
 export interface Action<T> {
   type: ActionType
-  payload: T
+  payload?: T
 }

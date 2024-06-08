@@ -26,14 +26,26 @@ const handleSubmit = (e: Event) => {
   $todoInput.value = ''
 }
 
-const renderToogleBtn = () => {
-  const todoCount = state.todos.length
+export const renderToogleBtn = () => {
+  const { todos } = state
+
+  const todoCount = todos.length
   if (todoCount === 0) $allToggleBtn.classList.add('hidden')
   else $allToggleBtn.classList.remove('hidden')
 }
 
-const handleClick = (e: Event) => {
-  // 전체 선택, 해제
+const changeToggleBtnStyle = () => {
+  const { isAllCompleted } = state
+  if (isAllCompleted) $allToggleBtn.classList.add('all-completed')
+  else $allToggleBtn.classList.remove('all-completed')
+}
+
+const handleClick = () => {
+  dispatch({ type: 'CHANGE_TOGGLE_ALL' })
+  changeToggleBtnStyle()
+
+  dispatch({ type: 'TOGGLE_ALL' })
+  renderList()
 }
 
 const init = () => {
