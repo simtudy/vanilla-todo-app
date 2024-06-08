@@ -45,9 +45,9 @@ export const changeToggleBtnStyle = () => {
 
 const handleToggleAllBtbClick = () => {
   dispatch({ type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY' })
-  changeToggleBtnStyle()
+  dispatch({ type: 'TOGGLE_ALL_TODO_ITEMS', payload: { updatedAt: Date.now() } })
 
-  dispatch({ type: 'TOGGLE_ALL_TODO_ITEMS' })
+  changeToggleBtnStyle()
   renderList()
   renderClearCompletedBtn()
 }

@@ -20,7 +20,7 @@ export type ActionTypes =
   | AddTodoAction
   | EditTodoAction
   | DeletTodoAction
-  | ToggleTodoAction
+  | ToggleTodoItemAction
   | ChangToggleAllBtnVisibilityAction
   | ToggleAllTodoItemsAction
   | ClearCompletedItemsAction
@@ -39,9 +39,9 @@ export type DeletTodoAction = {
   type: 'DELETE_TODO'
   payload: Pick<Todo, 'id'>
 }
-export type ToggleTodoAction = {
+export type ToggleTodoItemAction = {
   type: 'TOGGLE_TODO_ITEM'
-  payload: Pick<Todo, 'id'>
+  payload: Pick<Todo, 'id' | 'updatedAt'>
 }
 export type ChangeFilterAction = {
   type: 'CHANGE_FILTER'
@@ -49,6 +49,7 @@ export type ChangeFilterAction = {
 }
 export type ToggleAllTodoItemsAction = {
   type: 'TOGGLE_ALL_TODO_ITEMS'
+  payload: Pick<Todo, 'updatedAt'>
 }
 export type ChangToggleAllBtnVisibilityAction = {
   type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY'

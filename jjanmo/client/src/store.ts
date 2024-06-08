@@ -35,11 +35,11 @@ const reducer = (action: ActionTypes): State => {
       }
     }
     case 'TOGGLE_TODO_ITEM': {
-      const { id } = action.payload
+      const { id, updatedAt } = action.payload
       return {
         ...state,
         todos: state.todos.map((todo) =>
-          todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo
+          todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active', updatedAt } : todo
         ),
       }
     }
@@ -50,9 +50,14 @@ const reducer = (action: ActionTypes): State => {
       }
     }
     case 'TOGGLE_ALL_TODO_ITEMS': {
+      const { updatedAt } = action.payload
       return {
         ...state,
-        todos: state.todos.map((todo) => ({ ...todo, status: state.isAllCompleted ? 'completed' : 'active' })),
+        todos: state.todos.map((todo) => ({
+          ...todo,
+          status: state.isAllCompleted ? 'completed' : 'active',
+          updatedAt,
+        })),
       }
     }
     case 'CLEAR_COMPLETED_ITEMS': {

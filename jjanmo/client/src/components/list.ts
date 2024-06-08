@@ -45,7 +45,7 @@ const handleClick = (e: Event) => {
   }
 
   if (className.includes('checkbox')) {
-    dispatch({ type: 'TOGGLE_TODO_ITEM', payload: { id } })
+    dispatch({ type: 'TOGGLE_TODO_ITEM', payload: { id, updatedAt: Date.now() } })
     renderList()
     renderClearCompletedBtn()
     return
