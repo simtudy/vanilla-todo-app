@@ -1,6 +1,5 @@
 import { dispatch, state } from '@/store'
 import { State, Todo } from '@/types'
-import { findItemId } from '@/utils'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
@@ -8,7 +7,7 @@ export const renderList = () => {
   const { todos, isAllCompleted } = state
 
   const updated = todos.map((todo) => {
-    const { id, text, status } = todo
+    const { id, text } = todo
     return `
       <li key=${id} class="todo-item" id=${id}>
         <input class="todo-item-checkbox" type="checkbox"/>
@@ -24,8 +23,10 @@ export const renderList = () => {
 }
 
 const handleClick = (e: Event) => {
-  const className = (e.target as HTMLElement).className
-  const id = findItemId(e.target as HTMLElement)
+  const target = e.target as HTMLElement
+  const className = target.className
+  const id = target.closest('.todo-item')?.id
+
   if (!id) return
 
   if (className.includes('delete')) {
