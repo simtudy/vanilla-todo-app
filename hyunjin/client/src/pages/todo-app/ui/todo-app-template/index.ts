@@ -1,11 +1,7 @@
 export const template = document.createElement("template");
 
 template.id = "todo-app-template";
-template.innerHTML = `
-    <style>
-        @import url('/src/pages/todo-app/ui/todo-app-template/styles.css');
-    </style>
-    
+template.innerHTML = `    
     <header class="header">
       <a href="#"><h1 class="title">todos</h1></a>
     </header>
