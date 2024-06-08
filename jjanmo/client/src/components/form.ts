@@ -1,6 +1,7 @@
-import state from '@/store'
-import { ToDo } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
+import { state, dispatch } from '@/store'
+import { Todo } from '@/types'
+import { renderList } from '@/components/list'
 
 const $todoForm = document.querySelector('.todo-form') as HTMLFormElement
 const $todoInput = document.querySelector('.todo-input') as HTMLInputElement
@@ -9,18 +10,20 @@ const $allToggleBtn = document.querySelector('.all-toggle-btn') as HTMLButtonEle
 const handleSubmit = (e: Event) => {
   e.preventDefault()
 
-  const text = $todoInput.value
-  const todo: ToDo = {
+  const todo: Todo = {
     id: uuidv4(),
-    text,
+    text: $todoInput.value,
     status: 'active',
     createdAt: Date.now(),
     updatedAt: Date.now(),
   }
-  state.todos.push(todo)
-  $todoInput.value = ''
+
+  dispatch({ type: 'ADD_TODO', payload: todo })
 
   renderToogleBtn()
+  renderList()
+
+  $todoInput.value = ''
 }
 
 const renderToogleBtn = () => {
