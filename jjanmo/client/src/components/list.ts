@@ -1,6 +1,6 @@
 import { dispatch, state } from '@/store'
 import { renderToggleAllBtn } from './form'
-import { renderClearCompletedBtn, renderControlContainer } from './control'
+import { changeFilterBtnStyle, renderClearCompletedBtn, renderControlContainer } from './control'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
@@ -33,9 +33,14 @@ const handleClick = (e: Event) => {
 
   if (className.includes('delete')) {
     dispatch({ type: 'DELETE_TODO', payload: { id } })
+    if (state.todos.length === 0) {
+      dispatch({ type: 'RESET_ALL' })
+    }
+
     renderList()
     renderToggleAllBtn()
     renderControlContainer()
+    changeFilterBtnStyle()
     return
   }
 

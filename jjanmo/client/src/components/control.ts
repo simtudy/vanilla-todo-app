@@ -27,9 +27,10 @@ export const renderClearCompletedBtn = () => {
   else $btnText.classList.add('hidden')
 }
 
-const changeFilterBtnStyle = (target: Filter) => {
+export const changeFilterBtnStyle = () => {
+  const filter = state.filter
   $filterBtns.forEach((btn) => {
-    if (btn.dataset.filter === target) btn.classList.add('selected')
+    if (btn.dataset.filter === filter) btn.classList.add('selected')
     else btn.classList.remove('selected')
   })
 }
@@ -41,18 +42,22 @@ const handleFilterClick = (e: Event) => {
   const filter = target.dataset.filter as Filter
   dispatch({ type: 'CHANGE_FILTER', payload: { filter } })
 
-  changeFilterBtnStyle(filter)
+  changeFilterBtnStyle()
   renderList()
 }
 
 const handleClearCompletedBtnClick = () => {
   dispatch({ type: 'CLEAR_COMPLETED_ITEMS' })
+  if (state.todos.length === 0) {
+    dispatch({ type: 'RESET_ALL' })
+  }
 
   renderList()
   renderToggleAllBtn()
   renderControlContainer()
   renderClearCompletedBtn()
   changeToggleBtnStyle()
+  changeFilterBtnStyle()
   $clearCompletedBtn.blur()
 }
 
