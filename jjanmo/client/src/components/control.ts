@@ -1,9 +1,11 @@
 import { dispatch, state } from '@/store'
+import { Filter } from '@/types'
 
 const $controlContainer = document.querySelector('.control-container') as HTMLDivElement
 const $filterContainer = document.querySelector('.filter-container') as HTMLDivElement
 const $todoCount = document.querySelector('.todo-count') as HTMLDivElement
 const $clearCompletedBtn = document.querySelector('.clear-completed-btn') as HTMLButtonElement
+const $filterBtns = $filterContainer.querySelectorAll('button') as NodeListOf<HTMLButtonElement>
 
 // by todo-item 개수
 export const renderControlContainer = () => {
@@ -23,7 +25,23 @@ export const renderClearCompletedBtn = () => {
   else $btnText.classList.add('hidden')
 }
 
-const handleFilterClick = () => {}
+const changeFilterBtnStyle = (target: Filter) => {
+  $filterBtns.forEach((btn) => {
+    if (btn.dataset.filter === target) btn.classList.add('selected')
+    else btn.classList.remove('selected')
+  })
+}
+
+const handleFilterClick = (e: Event) => {
+  const target = e.target as HTMLElement
+  if (target.tagName !== 'BUTTON') return
+
+  const filter = target.dataset.filter as Filter
+  dispatch({ type: 'CHANGE_FILTER', payload: { filter } })
+
+  changeFilterBtnStyle(filter)
+  console.log('@', state)
+}
 
 const handleClearCompletedBtnClick = () => {
   dispatch({ type: 'CLEAR_COMPLETED_ITEMS' })
