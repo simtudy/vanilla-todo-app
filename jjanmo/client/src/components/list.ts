@@ -5,9 +5,10 @@ import { renderClearCompletedBtn, renderControlContainer } from './control'
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
 export const renderList = () => {
-  const { todos } = state
+  const { todos, filter } = state
 
-  const updated = todos.map((todo) => {
+  const filterd = filter === 'all' ? todos : todos.filter((todo) => todo.status === filter)
+  const updated = filterd.map((todo) => {
     const { id, text, status } = todo
     return `
       <li key=${id} class="todo-item" id=${id}>

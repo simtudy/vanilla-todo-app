@@ -1,5 +1,6 @@
 import { dispatch, state } from '@/store'
 import { Filter } from '@/types'
+import { renderList } from './list'
 
 const $controlContainer = document.querySelector('.control-container') as HTMLDivElement
 const $filterContainer = document.querySelector('.filter-container') as HTMLDivElement
@@ -40,7 +41,7 @@ const handleFilterClick = (e: Event) => {
   dispatch({ type: 'CHANGE_FILTER', payload: { filter } })
 
   changeFilterBtnStyle(filter)
-  console.log('@', state)
+  renderList()
 }
 
 const handleClearCompletedBtnClick = () => {
