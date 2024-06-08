@@ -97,7 +97,7 @@ main {
   font-size: 18px;
 }
 
-.todo-delete-btn {
+.todo-item-delete-btn {
   border: 0;
   background-color: transparent;
   font-size: 20px;
