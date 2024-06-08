@@ -10,10 +10,12 @@ const $allToggleBtn = document.querySelector('.all-toggle-btn') as HTMLButtonEle
 
 const handleSubmit = (e: Event) => {
   e.preventDefault()
+  const text = $todoInput.value
+  if (!text) return
 
   const todo: Todo = {
     id: uuidv4(),
-    text: $todoInput.value,
+    text,
     status: 'active',
     createdAt: Date.now(),
     updatedAt: Date.now(),
