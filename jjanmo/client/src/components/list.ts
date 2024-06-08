@@ -7,12 +7,12 @@ export const renderList = () => {
   const { todos, isAllCompleted } = state
 
   const updated = todos.map((todo) => {
-    const { id, text } = todo
+    const { id, text, status } = todo
     return `
       <li key=${id} class="todo-item" id=${id}>
-        <input class="todo-item-checkbox" type="checkbox"/>
+        <input class="todo-item-checkbox ${status}" type="checkbox"/>
         <div class="todo-content">
-          <div class="todo-text">${text}</div>
+          <div class="todo-text ${status}">${text}</div>
           <button class="todo-item-delete-btn">✕</button>
         </div>
       </li>
