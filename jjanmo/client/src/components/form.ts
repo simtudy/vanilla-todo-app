@@ -26,7 +26,6 @@ const handleSubmit = (e: Event) => {
   renderToggleAllBtn()
   renderList()
   renderControlContainer()
-
   $todoInput.value = ''
 }
 
@@ -55,6 +54,7 @@ const handleToggleAllBtbClick = () => {
 
 const init = () => {
   $todoForm.addEventListener('submit', handleSubmit)
+  $todoInput.addEventListener('blur', handleSubmit)
   $allToggleBtn.addEventListener('click', handleToggleAllBtbClick)
 }
 
