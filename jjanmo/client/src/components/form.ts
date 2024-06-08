@@ -20,13 +20,13 @@ const handleSubmit = (e: Event) => {
 
   dispatch({ type: 'ADD_TODO', payload: todo })
 
-  renderToogleBtn()
+  renderToggleAllBtn()
   renderList()
 
   $todoInput.value = ''
 }
 
-export const renderToogleBtn = () => {
+export const renderToggleAllBtn = () => {
   const { todos } = state
 
   const todoCount = todos.length
@@ -40,17 +40,17 @@ const changeToggleBtnStyle = () => {
   else $allToggleBtn.classList.remove('all-completed')
 }
 
-const handleClick = () => {
-  dispatch({ type: 'CHANGE_TOGGLE_ALL' })
+const handleToggleAllBtbClick = () => {
+  dispatch({ type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY' })
   changeToggleBtnStyle()
 
-  dispatch({ type: 'TOGGLE_ALL' })
+  dispatch({ type: 'TOGGLE_ALL_TODO_ITEMS' })
   renderList()
 }
 
 const init = () => {
   $todoForm.addEventListener('submit', handleSubmit)
-  $allToggleBtn.addEventListener('click', handleClick)
+  $allToggleBtn.addEventListener('click', handleToggleAllBtbClick)
 }
 
 init()

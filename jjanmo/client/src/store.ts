@@ -32,12 +32,7 @@ const reducer = ({ type, payload }: Action<unknown>): State => {
         todos: state.todos.filter((todo) => todo.id !== id),
       }
     }
-    case 'CHANGE_TOGGLE_ALL':
-      return {
-        ...state,
-        isAllCompleted: !state.isAllCompleted,
-      }
-    case 'TOGGLE_TODO':
+    case 'TOGGLE_TODO_ITEM':
       const { id } = payload as Pick<Todo, 'id'>
       return {
         ...state,
@@ -45,12 +40,18 @@ const reducer = ({ type, payload }: Action<unknown>): State => {
           todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo
         ),
       }
-    case 'TOGGLE_ALL':
+    case 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY':
+      return {
+        ...state,
+        isAllCompleted: !state.isAllCompleted,
+      }
+
+    case 'TOGGLE_ALL_TODO_ITEMS':
       return {
         ...state,
         todos: state.todos.map((todo) => ({ ...todo, status: state.isAllCompleted ? 'completed' : 'active' })),
       }
-    case 'CLEAR_COMPLETED':
+    case 'CLEAR_COMPLETED_ITEMS':
       return {
         todos: [],
         isAllCompleted: false,
