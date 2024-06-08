@@ -1,7 +1,7 @@
 import { dispatch, state } from '@/store'
 import { Filter } from '@/types'
 import { renderList } from './list'
-import { renderToggleAllBtn } from './form'
+import { changeToggleBtnStyle, renderToggleAllBtn } from './form'
 
 const $controlContainer = document.querySelector('.control-container') as HTMLDivElement
 const $filterContainer = document.querySelector('.filter-container') as HTMLDivElement
@@ -15,7 +15,8 @@ export const renderControlContainer = () => {
   if (todoCount === 0) $controlContainer.classList.add('hidden')
   else $controlContainer.classList.remove('hidden')
 
-  $todoCount.textContent = `${todoCount} items left`
+  const activeTodoCount = state.todos.filter((todo) => todo.status === 'active').length
+  $todoCount.textContent = `${activeTodoCount} items left`
 }
 // according to todo-item status
 export const renderClearCompletedBtn = () => {
@@ -51,6 +52,7 @@ const handleClearCompletedBtnClick = () => {
   renderToggleAllBtn()
   renderControlContainer()
   renderClearCompletedBtn()
+  changeToggleBtnStyle()
   $clearCompletedBtn.blur()
 }
 

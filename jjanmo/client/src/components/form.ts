@@ -37,7 +37,7 @@ export const renderToggleAllBtn = () => {
   else $allToggleBtn.classList.remove('hidden')
 }
 
-const changeToggleBtnStyle = () => {
+export const changeToggleBtnStyle = () => {
   const { isAllCompleted } = state
   if (isAllCompleted) $allToggleBtn.classList.add('all-completed')
   else $allToggleBtn.classList.remove('all-completed')
