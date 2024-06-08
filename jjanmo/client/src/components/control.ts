@@ -8,16 +8,21 @@ const $todoCount = document.querySelector('.todo-count') as HTMLDivElement
 const $clearCompletedBtn = document.querySelector('.clear-completed-btn') as HTMLButtonElement
 const $filterBtns = $filterContainer.querySelectorAll('button') as NodeListOf<HTMLButtonElement>
 
-// by todo-item 개수
+// according to todo-item count
 export const renderControlContainer = () => {
   const todoCount = state.todos.length
   if (todoCount === 0) $controlContainer.classList.add('hidden')
   else $controlContainer.classList.remove('hidden')
 
-  $todoCount.textContent = `${state.todos.length} items left`
+  renderTodoCount()
 }
 
-// by todo-item 상태
+export const renderTodoCount = () => {
+  const todoCount = state.todos.length
+  $todoCount.textContent = `${todoCount} items left`
+}
+
+// according to todo-item status
 export const renderClearCompletedBtn = () => {
   const { todos } = state
   const completedCount = todos.filter((todo) => todo.status === 'completed').length
@@ -46,6 +51,11 @@ const handleFilterClick = (e: Event) => {
 
 const handleClearCompletedBtnClick = () => {
   dispatch({ type: 'CLEAR_COMPLETED_ITEMS' })
+
+  renderList()
+  renderTodoCount()
+  renderClearCompletedBtn()
+  $clearCompletedBtn.blur()
 }
 
 const init = () => {
