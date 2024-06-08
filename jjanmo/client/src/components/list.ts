@@ -54,6 +54,7 @@ const handleClick = (e: Event) => {
     dispatch({ type: 'TOGGLE_TODO_ITEM', payload: { id, updatedAt: Date.now() } })
     renderList()
     renderClearCompletedBtn()
+    renderControlContainer()
     return
   }
 }

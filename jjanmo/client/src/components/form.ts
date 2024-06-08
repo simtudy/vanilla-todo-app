@@ -43,19 +43,20 @@ export const changeToggleBtnStyle = () => {
   else $allToggleBtn.classList.remove('all-completed')
 }
 
-const handleToggleAllBtbClick = () => {
+const handleToggleAllBtnClick = () => {
   dispatch({ type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY' })
   dispatch({ type: 'TOGGLE_ALL_TODO_ITEMS', payload: { updatedAt: Date.now() } })
 
   changeToggleBtnStyle()
   renderList()
   renderClearCompletedBtn()
+  renderControlContainer()
 }
 
 const init = () => {
   $todoForm.addEventListener('submit', handleSubmit)
   $todoInput.addEventListener('blur', handleSubmit)
-  $allToggleBtn.addEventListener('click', handleToggleAllBtbClick)
+  $allToggleBtn.addEventListener('click', handleToggleAllBtnClick)
 }
 
 init()

@@ -18,6 +18,7 @@ export const renderControlContainer = () => {
   const activeTodoCount = state.todos.filter((todo) => todo.status === 'active').length
   $todoCount.textContent = `${activeTodoCount} items left`
 }
+
 // according to todo-item status
 export const renderClearCompletedBtn = () => {
   const { todos } = state
