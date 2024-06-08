@@ -1,6 +1,7 @@
 import { dispatch, state } from '@/store'
 import { renderToggleAllBtn } from './form'
 import { changeFilterBtnStyle, renderClearCompletedBtn, renderControlContainer } from './control'
+import { Mode } from '@/types'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
 
@@ -13,9 +14,14 @@ export const renderList = () => {
     return `
       <li key=${id} class="todo-item" id=${id}>
         <input class="todo-item-checkbox ${status}" type="checkbox"/>
-        <div class="todo-content">
+        <div class="todo-content" data-mode="view">
           <div class="todo-text ${status}">${text}</div>
           <button class="todo-item-delete-btn">✕</button>
+        </div>
+        <div class="todo-content hidden" data-mode="edit">
+          <form class="todo-item-edit-form">
+            <input class="todo-item-edit-input" type="text" value="${text}" autofocus/>
+          </form>
         </div>
       </li>
     `
@@ -52,8 +58,44 @@ const handleClick = (e: Event) => {
   }
 }
 
+const changeTodoItemMode = ($todoItem: Element, target: Mode) => {
+  const $viewMode = $todoItem.querySelector('.todo-content[data-mode="view"]') as HTMLDivElement
+  const $editMode = $todoItem.querySelector('.todo-content[data-mode="edit"]') as HTMLDivElement
+  const $remove = target === 'view' ? $editMode : $viewMode
+  const $add = target === 'view' ? $viewMode : $editMode
+  $add.classList.remove('hidden')
+  $remove.classList.add('hidden')
+}
+
+const handleDbClick = (e: Event) => {
+  const target = e.target as HTMLElement
+  const $todoItem = target.closest('.todo-item')
+
+  if (!$todoItem) return
+
+  const $todoItemForm = $todoItem.querySelector('.todo-item-edit-form') as HTMLFormElement
+  const $todoItemEditInput = $todoItem.querySelector('.todo-item-edit-input') as HTMLInputElement
+  changeTodoItemMode($todoItem, 'edit')
+  $todoItemEditInput.focus()
+
+  $todoItemForm.addEventListener('submit', (e: Event) => {
+    e.preventDefault()
+    const text = $todoItemEditInput.value
+    dispatch({ type: 'EDIT_TODO', payload: { id: $todoItem.id, text, updatedAt: Date.now() } })
+    renderList()
+    changeTodoItemMode($todoItem, 'view')
+  })
+  $todoItemEditInput.addEventListener('blur', () => {
+    const text = $todoItemEditInput.value
+    dispatch({ type: 'EDIT_TODO', payload: { id: $todoItem.id, text, updatedAt: Date.now() } })
+    renderList()
+    changeTodoItemMode($todoItem, 'view')
+  })
+}
+
 const init = () => {
   $todoList.addEventListener('click', handleClick)
+  $todoList.addEventListener('dblclick', handleDbClick)
 }
 
 init()
