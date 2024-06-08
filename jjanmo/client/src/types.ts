@@ -8,21 +8,50 @@ export interface Todo {
   updatedAt: number
 }
 
+export type Filter = 'all' | 'active' | 'completed'
+
 export interface State {
   todos: Todo[]
   isAllCompleted: boolean
+  filter: Filter
 }
 
-export type ActionType =
-  | 'ADD_TODO'
-  | 'EDIT_TODO'
-  | 'DELETE_TODO'
-  | 'TOGGLE_TODO_ITEM'
-  | 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY'
-  | 'TOGGLE_ALL_TODO_ITEMS'
-  | 'CLEAR_COMPLETED_ITEMS'
+export type ActionTypes =
+  | AddTodoAction
+  | EditTodoAction
+  | DeletTodoAction
+  | ToggleTodoAction
+  | ChangToggleAllBtnVisibilityAction
+  | ToggleAllTodoItemsAction
+  | ClearCompletedItemsAction
+  | ChangeFilterAction
 
-export interface Action<T> {
-  type: ActionType
-  payload?: T
+export type AddTodoAction = {
+  type: 'ADD_TODO'
+  payload: Todo
+}
+export type EditTodoAction = {
+  type: 'EDIT_TODO'
+  payload: Pick<Todo, 'id' | 'text' | 'updatedAt'>
+}
+export type DeletTodoAction = {
+  type: 'DELETE_TODO'
+  payload: Pick<Todo, 'id'>
+}
+export type ToggleTodoAction = {
+  type: 'TOGGLE_TODO_ITEM'
+  payload: Pick<Todo, 'id'>
+}
+export type ChangeFilterAction = {
+  type: 'CHANGE_FILTER'
+  payload: Pick<State, 'filter'>
+}
+export type ToggleAllTodoItemsAction = {
+  type: 'TOGGLE_ALL_TODO_ITEMS'
+}
+export type ChangToggleAllBtnVisibilityAction = {
+  type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY'
+}
+export type ClearCompletedItemsAction = {
+  type: 'CLEAR_COMPLETED_ITEMS'
 }

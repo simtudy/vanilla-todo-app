@@ -138,3 +138,12 @@ input {
   outline: none;
   border: none;
 }
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
