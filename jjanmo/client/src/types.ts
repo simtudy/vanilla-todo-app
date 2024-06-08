@@ -7,7 +7,6 @@ export interface Todo {
   status: Status
   createdAt: number
   updatedAt: number
-  mode: Mode
 }
 
 export type Filter = 'all' | 'active' | 'completed'
@@ -21,7 +20,6 @@ export interface State {
 export type ActionTypes =
   | AddTodoAction
   | EditTodoAction
-  | ChangeTodoModeAction
   | DeletTodoAction
   | ToggleTodoItemAction
   | ChangToggleAllBtnVisibilityAction
@@ -37,10 +35,6 @@ export type AddTodoAction = {
 export type EditTodoAction = {
   type: 'EDIT_TODO'
   payload: Pick<Todo, 'id' | 'text' | 'updatedAt'>
-}
-export type ChangeTodoModeAction = {
-  type: 'CHANGE_TODO_MODE'
-  payload: Pick<Todo, 'id'>
 }
 export type DeletTodoAction = {
   type: 'DELETE_TODO'

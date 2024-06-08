@@ -19,7 +19,6 @@ const handleSubmit = (e: Event) => {
     status: 'active',
     createdAt: Date.now(),
     updatedAt: Date.now(),
-    mode: 'view',
   }
 
   dispatch({ type: 'ADD_TODO', payload: todo })
