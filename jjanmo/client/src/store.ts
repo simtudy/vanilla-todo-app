@@ -53,9 +53,11 @@ const reducer = (action: ActionTypes): State => {
         todos: state.todos.map((todo) => ({ ...todo, status: state.isAllCompleted ? 'completed' : 'active' })),
       }
     case 'CLEAR_COMPLETED_ITEMS':
+      const activeTodos = state.todos.filter((todo) => todo.status === 'active')
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.status !== 'completed'),
+        todos: activeTodos,
+        isAllCompleted: activeTodos.length === 0 ? false : state.isAllCompleted,
       }
     case 'CHANGE_FILTER':
       const { filter } = action.payload
