@@ -53,8 +53,8 @@ const reducer = ({ type, payload }: Action<unknown>): State => {
       }
     case 'CLEAR_COMPLETED_ITEMS':
       return {
-        todos: [],
-        isAllCompleted: false,
+        ...state,
+        todos: state.todos.filter((todo) => todo.status !== 'completed'),
       }
     default:
       return state
