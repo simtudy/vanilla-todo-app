@@ -1,37 +1,70 @@
-
-
-
-function getNewTodoItem(name) {
-    let newTodoItem = document.createElement("li");
-
-    let checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            newTodoItem.classList.add("completed");
-        } else {
-            newTodoItem.classList.remove("completed");
-        }
-    });
-    checkbox.classList.add('toggle');
-    newTodoItem.appendChild(checkbox);
-
-    let label = document.createElement("label");
-    label.textContent = name;
-    label.setAttribute('for', 'toggle')
-    newTodoItem.appendChild(label);
-
-    let deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("destroy");
-    newTodoItem.appendChild(deleteBtn);
-
-    return newTodoItem;
-}
+let todos = [];
+let todoIdCounter = 0;
 
 const newTodoEl = document.querySelector('.new-todo');
-const todoListEl = document.querySelector('.todo-list');
 newTodoEl.addEventListener('change', function(event) {
-    let newItemContent = getNewTodoItem(event.target.value);
-    todoListEl.appendChild(newItemContent);
+    todos.push({
+        name: event.target.value,
+        completed: false,
+        id: todoIdCounter++,
+    })
+    console.log(todos);
     newTodoEl.value = "";
+    referesh();
 });
+
+function referesh() {
+    const todoListEl = document.querySelector('.todo-list');
+    todoListEl.innerHTML = '';
+
+    todos.forEach(todoItem => {
+        const newTodoItem = document.createElement('li');
+        newTodoItem.setAttribute('data-id', todoItem.id);
+
+        if (todoItem.completed) {
+            newTodoItem.classList.add('completed');
+        } else {
+            newTodoItem.classList.remove('completed');
+        }
+
+        let checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.classList.add('toggle');
+        checkbox.checked = todoItem.completed
+        checkbox.addEventListener('change', function() {
+            let todoId = +this.parentElement.getAttribute('data-id');
+            todoItem = todos.find(todo => todo.id === todoId);
+            if (this.checked) {
+                todoItem.completed = true;
+            } else {
+                todoItem.completed = false;
+            }
+            console.log(todos);
+            referesh();
+        });
+        newTodoItem.appendChild(checkbox);
+
+        let label = document.createElement("label");
+        label.textContent = todoItem.name;
+        label.setAttribute('for', 'toggle')
+        newTodoItem.appendChild(label);
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("destroy");
+        deleteBtn.addEventListener('click', function() {
+            let todoId = +this.parentElement.getAttribute('data-id');
+            index = todos.findIndex(todo => todo.id === todoId);
+            if (index !== -1) {
+                todos.splice(index, 1);
+            }
+            console.log(todos);
+            referesh();
+        });
+        newTodoItem.appendChild(deleteBtn);
+
+        todoListEl.appendChild(newTodoItem);
+    });
+    
+    const itemsLeftCountEl = document.querySelector('.todo-count strong');
+    itemsLeftCountEl.textContent = todos.filter(todo => !todo.completed).length;
+}
