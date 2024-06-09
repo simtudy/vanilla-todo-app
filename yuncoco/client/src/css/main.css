@@ -1,4 +1,31 @@
-:root {
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  margin: 50px 0px;
+}
+
+.page__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.todos__menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -93,4 +120,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
