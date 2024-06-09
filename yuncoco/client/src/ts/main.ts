@@ -3,7 +3,7 @@
 import App from "./App.ts";
 
 const root = document.getElementById("app");
-const app = new App(root);
+new App(root);
 
 // document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 //   <div>
