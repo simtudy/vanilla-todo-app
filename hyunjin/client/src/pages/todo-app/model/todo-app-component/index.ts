@@ -1,10 +1,6 @@
 import { TodoAppTemplate } from "@pages/todo-app";
 import { mainStyleSheet, globalStyleSheet, resetStyleSheet } from "@app/styles";
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import { Todo } from "@shared/types";
 
 export class TodoAppComponent extends HTMLElement {
   private todos: Todo[] = [];
@@ -21,7 +17,6 @@ export class TodoAppComponent extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(node);
     shadowRoot.adoptedStyleSheets = [globalStyleSheet, resetStyleSheet, mainStyleSheet];
-
     this.newTodoInput = this.shadowRoot!.querySelector<HTMLInputElement>("#new-todo")!;
     this.clearCompletedButton = this.shadowRoot!.querySelector<HTMLButtonElement>("#clear-completed")!;
     this.toggleAllCheckbox = this.shadowRoot!.querySelector<HTMLInputElement>("#toggle-all")!;
