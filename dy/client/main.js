@@ -11,19 +11,19 @@ newTodoEl.addEventListener('change', function(event) {
     })
     console.log(todos);
     newTodoEl.value = "";
-    referesh();
+    refresh();
 });
 
 const filterBtns = document.querySelectorAll('.filter li a');
 filterBtns.forEach(function(filterBtn) {
     filterBtn.addEventListener('click', function() {
         filterOption = this.textContent;
-        referesh();
+        refresh();
     });
 });
 
 
-function referesh() {
+function refresh() {
     const todoListEl = document.querySelector('.todo-list');
     todoListEl.innerHTML = '';
 
@@ -56,13 +56,25 @@ function referesh() {
                 todoItem.completed = false;
             }
             console.log(todos);
-            referesh();
+            refresh();
         });
         newTodoItem.appendChild(checkbox);
 
         let label = document.createElement("label");
         label.textContent = todoItem.name;
         label.setAttribute('for', 'toggle')
+        label.addEventListener('dblclick', function() {
+            const input = document.createElement('input');
+            input.classList.add('edit');
+            input.type = 'text';
+            input.value = todoItem.name;
+            input.addEventListener('change', function() {
+                todoItem.name = input.value;
+                refresh();
+            })
+            newTodoItem.replaceChild(input, label);
+            input.focus();
+        });
         newTodoItem.appendChild(label);
 
         let deleteBtn = document.createElement("button");
@@ -74,7 +86,7 @@ function referesh() {
                 todos.splice(index, 1);
             }
             console.log(todos);
-            referesh();
+            refresh();
         });
         newTodoItem.appendChild(deleteBtn);
 

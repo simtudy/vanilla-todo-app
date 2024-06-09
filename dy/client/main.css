@@ -36,20 +36,31 @@ button {
     top: -140px;
 }
 
-.todoapp .new-todo {
+.todoapp .new-todo,
+.todoapp .edit {
     width: 100%;
     height: 65px;
     box-sizing: border-box;
     font-size: 24px;
     outline: none;
-    padding: 16px 16px 16px 60px;
     border: none;
     box-shadow: 0 -2px 1px rgba(0, 0, 0, .03); 
 }
+
+.todoapp .edit {
+    margin-left: 16px;
+}
+
+.todoapp .new-todo {
+    padding: 16px 16px 16px 60px;
+}
+
 .todoapp .new-todo:placeholder-shown {
     font-style: italic;
 }
-.todoapp .new-todo:focus {
+
+.todoapp .new-todo:focus,
+.todoapp .edit:focus {
     box-shadow: 0 0 2px 2px #cf7d7d;
 }
 
@@ -105,7 +116,7 @@ button {
     display: block;
     font-weight: 400;
     line-height: 1.2;
-    padding: 15px;
+    padding: 16px;
     transition: color .4s;
     /* word-break: break-all; */
     flex-grow: 1;
