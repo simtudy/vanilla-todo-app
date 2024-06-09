@@ -124,6 +124,7 @@ button {
     top: 0;
     bottom: 0;
     margin: auto 0;
+    cursor: pointer;
 }
 .todoapp .todo-list li:hover .destroy::before {
     color: #c18585;
