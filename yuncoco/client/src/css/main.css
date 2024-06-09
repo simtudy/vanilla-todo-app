@@ -23,6 +23,31 @@ body {
 .todos__menu {
   display: flex;
   gap: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.todos__list-item__view {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.todos__list-item__delete {
+  display: none;
+  margin-left: auto;
+}
+
+.todos__list-item__view:hover {
+  background-color: antiquewhite;
+
+  .todos__list-item__delete {
+    display: block;
+  }
+}
+
+.todos__list-item__edit {
+  display: none;
 }
 
 /* :root {
