@@ -22,6 +22,21 @@ filterBtns.forEach(function(filterBtn) {
     });
 });
 
+const toggleAll = document.querySelector('#toggle-all');
+toggleAll.addEventListener('change', function() {
+    if (this.checked) {
+        todos.forEach(todo => {
+            todo.completed = true;
+        });
+    } else {
+        todos.forEach(todo => {
+            todo.completed = false;
+        });
+    }
+    refresh();
+    console.log(todos);
+});
+
 
 function refresh() {
     const todoListEl = document.querySelector('.todo-list');
@@ -103,4 +118,19 @@ function refresh() {
             filterBtn.classList.remove('selected');
         }
     });
+
+    const completedItems = todos.filter(todo => todo.completed);
+    if (todos.length > 0 && completedItems.length === todos.length) {
+        toggleAll.checked = true;
+    } else {
+        toggleAll.checked = false;
+    }
+
+    const toggleAllLabel = document.querySelector('.toggle-all-label');
+    if (toggleAll.checked) {
+        toggleAllLabel.classList.add('checked');
+    } else {
+        toggleAllLabel.classList.remove('checked');
+    }
+
 }

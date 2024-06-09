@@ -72,7 +72,7 @@ button {
     z-index: 2;
 }
 
-.todoapp .toggle-all {
+.todoapp #toggle-all {
     border: none;
     width: 1px;
     height: 1px;
@@ -85,7 +85,6 @@ button {
 .todoapp .toggle-all-label {
     cursor: pointer;
     color: #949494;
-    display: block;
     justify-content: center;
     font-size: 22px;
     position: absolute;
@@ -95,6 +94,10 @@ button {
     display: flex;
     align-items: center;
     padding: 0 12px;
+}
+
+.todoapp .toggle-all-label.checked {
+    color: #111;
 }
 
 .todoapp .todo-list li {
