@@ -133,4 +133,17 @@ function refresh() {
         toggleAllLabel.classList.remove('checked');
     }
 
+    const footer = document.querySelector('.todoapp .footer');
+    const clearCompletedBtn = document.querySelector('.todoapp .footer>a');
+    if (clearCompletedBtn && completedItems.length === 0) {
+        footer.removeChild(clearCompletedBtn);
+    } else if (!clearCompletedBtn && completedItems.length > 0) {
+        const clearCompletedBtn = document.createElement('a');
+        clearCompletedBtn.text = "Clear completed";
+        clearCompletedBtn.addEventListener('click', function() {
+            todos = todos.filter(todo => !todo.completed);
+            refresh();
+        });
+        footer.appendChild(clearCompletedBtn);
+    }
 }

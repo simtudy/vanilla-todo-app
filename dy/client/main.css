@@ -14,6 +14,13 @@ button {
     /* vertical-align: baseline; */
 }
 
+a {
+    display: block;
+    color: #111;
+    text-decoration: none;
+}
+
+
 .todoapp {
     background-color: #fff;
     position: relative;
@@ -156,6 +163,7 @@ button {
     padding: 10px 15px;
     text-align: center;
     display: flex;
+    position: relative;
 }
 
 .todoapp .footer ul {
@@ -168,13 +176,19 @@ button {
     margin: 0 5px;
 }
 
-.todoapp .footer ul li a {
-    color: #111;
-    text-decoration: none;
-}
-
 .todoapp .footer ul li a.selected {
     padding: 0 5px;
     border: 1px solid #b83f45;
     border-radius: 3px;
+}
+
+.todoapp .footer > a {
+    position: absolute;
+    right: 5px;
+    margin: auto 0;
+}
+
+.todoapp .footer > a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
