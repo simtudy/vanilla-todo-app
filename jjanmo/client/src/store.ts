@@ -2,7 +2,6 @@ import { State, ActionTypes } from '@/types'
 
 const state: State = {
   todos: [],
-  isAllCompleted: false,
   filter: 'all',
 }
 
@@ -43,29 +42,21 @@ const reducer = (action: ActionTypes): State => {
         ),
       }
     }
-    case 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY': {
-      return {
-        ...state,
-        isAllCompleted: !state.isAllCompleted,
-      }
-    }
     case 'TOGGLE_ALL_TODO_ITEMS': {
-      const { updatedAt } = action.payload
+      const { status, updatedAt } = action.payload
       return {
         ...state,
         todos: state.todos.map((todo) => ({
           ...todo,
-          status: state.isAllCompleted ? 'completed' : 'active',
+          status,
           updatedAt,
         })),
       }
     }
     case 'CLEAR_COMPLETED_ITEMS': {
-      const activeTodos = state.todos.filter((todo) => todo.status === 'active')
       return {
         ...state,
-        todos: activeTodos,
-        isAllCompleted: activeTodos.length === 0 ? false : state.isAllCompleted,
+        todos: state.todos.filter((todo) => todo.status === 'active'),
       }
     }
     case 'CHANGE_FILTER': {
@@ -78,7 +69,6 @@ const reducer = (action: ActionTypes): State => {
     case 'RESET_ALL': {
       return {
         todos: [],
-        isAllCompleted: false,
         filter: 'all',
       }
     }

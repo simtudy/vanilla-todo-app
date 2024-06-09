@@ -1,6 +1,6 @@
 import { dispatch, state } from '@/store'
-import { renderToggleAllBtn } from './form'
-import { changeFilterBtnStyle, renderClearCompletedBtn, renderControlContainer } from './control'
+import { changeToggleBtnStyle, renderToggleAllBtn } from './form'
+import { changeFilterBtnStyle, renderActiveTodoCount, renderClearCompletedBtn, renderControlContainer } from './control'
 import { Mode } from '@/types'
 
 const $todoList = document.querySelector('.todo-list') as HTMLUListElement
@@ -44,17 +44,21 @@ const handleClick = (e: Event) => {
     }
 
     renderList()
-    renderToggleAllBtn()
     renderControlContainer()
+    renderActiveTodoCount()
+    renderToggleAllBtn()
     changeFilterBtnStyle()
     return
   }
 
   if (className.includes('checkbox')) {
     dispatch({ type: 'TOGGLE_TODO_ITEM', payload: { id, updatedAt: Date.now() } })
+
     renderList()
-    renderClearCompletedBtn()
     renderControlContainer()
+    renderActiveTodoCount()
+    renderClearCompletedBtn()
+    changeToggleBtnStyle()
     return
   }
 }
@@ -79,19 +83,19 @@ const handleDbClick = (e: Event) => {
   changeTodoItemMode($todoItem, 'edit')
   $todoItemEditInput.focus()
 
+  const updateTodoItemText = () => {
+    const text = $todoItemEditInput.value
+    dispatch({ type: 'EDIT_TODO', payload: { id: $todoItem.id, text, updatedAt: Date.now() } })
+
+    changeTodoItemMode($todoItem, 'view')
+    renderList()
+  }
+
   $todoItemForm.addEventListener('submit', (e: Event) => {
     e.preventDefault()
-    const text = $todoItemEditInput.value
-    dispatch({ type: 'EDIT_TODO', payload: { id: $todoItem.id, text, updatedAt: Date.now() } })
-    renderList()
-    changeTodoItemMode($todoItem, 'view')
+    updateTodoItemText()
   })
-  $todoItemEditInput.addEventListener('blur', () => {
-    const text = $todoItemEditInput.value
-    dispatch({ type: 'EDIT_TODO', payload: { id: $todoItem.id, text, updatedAt: Date.now() } })
-    renderList()
-    changeTodoItemMode($todoItem, 'view')
-  })
+  $todoItemEditInput.addEventListener('blur', updateTodoItemText)
 }
 
 const init = () => {

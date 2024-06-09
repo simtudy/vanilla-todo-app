@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { state, dispatch } from '@/store'
 import { Todo } from '@/types'
 import { renderList } from '@/components/list'
-import { renderClearCompletedBtn, renderControlContainer } from './control'
+import { renderActiveTodoCount, renderClearCompletedBtn, renderControlContainer } from './control'
 
 const $todoForm = document.querySelector('.todo-form') as HTMLFormElement
 const $todoInput = document.querySelector('.todo-input') as HTMLInputElement
@@ -23,34 +23,38 @@ const handleSubmit = (e: Event) => {
 
   dispatch({ type: 'ADD_TODO', payload: todo })
 
-  renderToggleAllBtn()
   renderList()
+  renderToggleAllBtn()
   renderControlContainer()
+  renderActiveTodoCount()
+  changeToggleBtnStyle()
   $todoInput.value = ''
 }
 
 export const renderToggleAllBtn = () => {
-  const { todos } = state
-
-  const todoCount = todos.length
+  const todoCount = state.todos.length
   if (todoCount === 0) $allToggleBtn.classList.add('hidden')
   else $allToggleBtn.classList.remove('hidden')
 }
 
 export const changeToggleBtnStyle = () => {
-  const { isAllCompleted } = state
+  const isAllCompleted = state.todos.every((todo) => todo.status === 'completed')
   if (isAllCompleted) $allToggleBtn.classList.add('all-completed')
   else $allToggleBtn.classList.remove('all-completed')
 }
 
 const handleToggleAllBtnClick = () => {
-  dispatch({ type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY' })
-  dispatch({ type: 'TOGGLE_ALL_TODO_ITEMS', payload: { updatedAt: Date.now() } })
+  const isAllCompleted = state.todos.every((todo) => todo.status === 'completed')
+  dispatch({
+    type: 'TOGGLE_ALL_TODO_ITEMS',
+    payload: { updatedAt: Date.now(), status: isAllCompleted ? 'active' : 'completed' },
+  })
 
   changeToggleBtnStyle()
-  renderList()
   renderClearCompletedBtn()
   renderControlContainer()
+  renderActiveTodoCount()
+  renderList()
 }
 
 const init = () => {

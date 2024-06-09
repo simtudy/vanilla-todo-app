@@ -13,7 +13,6 @@ export type Filter = 'all' | 'active' | 'completed'
 
 export interface State {
   todos: Todo[]
-  isAllCompleted: boolean
   filter: Filter
 }
 
@@ -22,7 +21,6 @@ export type ActionTypes =
   | EditTodoAction
   | DeletTodoAction
   | ToggleTodoItemAction
-  | ChangToggleAllBtnVisibilityAction
   | ToggleAllTodoItemsAction
   | ClearCompletedItemsAction
   | ChangeFilterAction
@@ -50,10 +48,7 @@ export type ChangeFilterAction = {
 }
 export type ToggleAllTodoItemsAction = {
   type: 'TOGGLE_ALL_TODO_ITEMS'
-  payload: Pick<Todo, 'updatedAt'>
-}
-export type ChangToggleAllBtnVisibilityAction = {
-  type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY'
+  payload: Pick<Todo, 'updatedAt' | 'status'>
 }
 export type ClearCompletedItemsAction = {
   type: 'CLEAR_COMPLETED_ITEMS'
