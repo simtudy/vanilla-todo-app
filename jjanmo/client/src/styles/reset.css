@@ -137,6 +137,7 @@ a {
 input {
   outline: none;
   border: none;
+  font-family: inherit;
 }
 
 button {

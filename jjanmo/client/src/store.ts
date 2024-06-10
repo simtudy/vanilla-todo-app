@@ -2,7 +2,6 @@ import { State, ActionTypes } from '@/types'
 
 const state: State = {
   todos: [],
-  isAllCompleted: false,
   filter: 'all',
 }
 
@@ -34,37 +33,45 @@ const reducer = (action: ActionTypes): State => {
         todos: state.todos.filter((todo) => todo.id !== id),
       }
     }
-    case 'TOGGLE_TODO_ITEM':
-      const { id } = action.payload
+    case 'TOGGLE_TODO_ITEM': {
+      const { id, updatedAt } = action.payload
       return {
         ...state,
         todos: state.todos.map((todo) =>
-          todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo
+          todo.id === id ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active', updatedAt } : todo
         ),
       }
-    case 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY':
+    }
+    case 'TOGGLE_ALL_TODO_ITEMS': {
+      const { status, updatedAt } = action.payload
       return {
         ...state,
-        isAllCompleted: !state.isAllCompleted,
+        todos: state.todos.map((todo) => ({
+          ...todo,
+          status,
+          updatedAt,
+        })),
       }
-    case 'TOGGLE_ALL_TODO_ITEMS':
+    }
+    case 'CLEAR_COMPLETED_ITEMS': {
       return {
         ...state,
-        todos: state.todos.map((todo) => ({ ...todo, status: state.isAllCompleted ? 'completed' : 'active' })),
+        todos: state.todos.filter((todo) => todo.status === 'active'),
       }
-    case 'CLEAR_COMPLETED_ITEMS':
-      const activeTodos = state.todos.filter((todo) => todo.status === 'active')
-      return {
-        ...state,
-        todos: activeTodos,
-        isAllCompleted: activeTodos.length === 0 ? false : state.isAllCompleted,
-      }
-    case 'CHANGE_FILTER':
+    }
+    case 'CHANGE_FILTER': {
       const { filter } = action.payload
       return {
         ...state,
         filter,
       }
+    }
+    case 'RESET_ALL': {
+      return {
+        todos: [],
+        filter: 'all',
+      }
+    }
     default:
       return state
   }

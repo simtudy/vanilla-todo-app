@@ -1,4 +1,5 @@
 export type Status = 'active' | 'completed'
+export type Mode = 'view' | 'edit'
 
 export interface Todo {
   id: string
@@ -12,7 +13,6 @@ export type Filter = 'all' | 'active' | 'completed'
 
 export interface State {
   todos: Todo[]
-  isAllCompleted: boolean
   filter: Filter
 }
 
@@ -20,11 +20,11 @@ export type ActionTypes =
   | AddTodoAction
   | EditTodoAction
   | DeletTodoAction
-  | ToggleTodoAction
-  | ChangToggleAllBtnVisibilityAction
+  | ToggleTodoItemAction
   | ToggleAllTodoItemsAction
   | ClearCompletedItemsAction
   | ChangeFilterAction
+  | ResetAllAction
 
 export type AddTodoAction = {
   type: 'ADD_TODO'
@@ -38,9 +38,9 @@ export type DeletTodoAction = {
   type: 'DELETE_TODO'
   payload: Pick<Todo, 'id'>
 }
-export type ToggleTodoAction = {
+export type ToggleTodoItemAction = {
   type: 'TOGGLE_TODO_ITEM'
-  payload: Pick<Todo, 'id'>
+  payload: Pick<Todo, 'id' | 'updatedAt'>
 }
 export type ChangeFilterAction = {
   type: 'CHANGE_FILTER'
@@ -48,10 +48,11 @@ export type ChangeFilterAction = {
 }
 export type ToggleAllTodoItemsAction = {
   type: 'TOGGLE_ALL_TODO_ITEMS'
-}
-export type ChangToggleAllBtnVisibilityAction = {
-  type: 'CHANGE_TOGGLE_ALL_BTN_VISIBILITY'
+  payload: Pick<Todo, 'updatedAt' | 'status'>
 }
 export type ClearCompletedItemsAction = {
   type: 'CLEAR_COMPLETED_ITEMS'
+}
+export type ResetAllAction = {
+  type: 'RESET_ALL'
 }
