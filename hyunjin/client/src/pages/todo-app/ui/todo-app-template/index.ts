@@ -1,11 +1,7 @@
 export const template = document.createElement("template");
 
 template.id = "todo-app-template";
-template.innerHTML = `
-    <style>
-        @import url('/src/pages/todo-app/ui/todo-app-template/styles.css');
-    </style>
-    
+template.innerHTML = `    
     <header class="header">
       <a href="#"><h1 class="title">todos</h1></a>
     </header>
@@ -22,20 +18,7 @@ template.innerHTML = `
         </div>
       </header>
       <main class="main">
-        <ul class="todo-list">
-          <li class="todo-item">
-            <div class="display-todo">
-              <label for="toggle-todo" class="toggle-todo-label visually-hidden">Toggle Todo</label>
-              <input id="toggle-todo" class="toggle-todo-input" type="checkbox" />
-              <span class="todo-item-text truncate-singleline" tabindex="0">Placeholder Text</span>
-              <button class="remove-todo-button" title="Remove Todo"></button>
-            </div>
-            <div class="edit-todo-container">
-              <label for="edit-todo" class="edit-todo-label visually-hidden">Edit todo</label>
-              <input id="edit-todo" class="edit-todo-input" />
-            </div>
-          </li>
-        </ul>
+        <ul class="todo-list"></ul>
       </main>
       <footer class="bottombar">
         <div class="todo-status"><span class="todo-count">0</span> item left</div>

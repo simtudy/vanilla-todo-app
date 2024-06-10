@@ -1,3 +1,4 @@
+const global = `
 *,
 *::before,
 *::after {
@@ -48,3 +49,7 @@ body {
   text-overflow: ellipsis;
   display: block !important;
 }
+`;
+
+export const globalStyleSheet = new CSSStyleSheet();
+globalStyleSheet.replaceSync(global);
